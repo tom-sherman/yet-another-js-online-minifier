@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/codemirror@5.48.4/lib/codemirror.js"></script>
+  <script src="https://unpkg.com/codemirror@5.48.4/mode/javascript/javascript.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/codemirror@5.48.4/lib/codemirror.css">
+  <script type="module" src="https://unpkg.com/comlink@4.0.2/dist/esm/comlink.mjs"></script>
+  <script type="module" src="index.js"></script>
+</head>
+<body>
+  <main class="editors">
+    <div class="editor">
+      <h2>Input</h2>
+      <textarea name="input" id="input" cols="30" rows="10" class="foo"></textarea>
+    </div>
+    <div class="editor">
+        <h2>Output</h2>
+      <textarea name="output" id="output" cols="30" rows="10"></textarea>
+    </div>
+  </main>
+</body>
+<style>
+  .editors {
+    display: flex;
+    min-height: 400px;
+  }
+  .editor {
+    height: auto;
+    flex-basis: 50%;
+  }
+</style>
+</html>
