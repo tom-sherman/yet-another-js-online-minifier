@@ -15,11 +15,12 @@ const domReady = () => new Promise(resolve => {
     domReady(),
     (new Minifier()).then(inst => { minifier = inst })
   ])
-  const codeMirrorInput = CodeMirror.fromTextArea(document.getElementById('input'), {
+  const codeMirrorInput = CodeMirror(document.getElementById('input'), {
     lineNumbers: true,
-    mode: 'javascript'
+    mode: 'javascript',
+    value: 'function add(first, second) {\n\t return first + second;\n }'
   })
-  const codeMirrorOutput = CodeMirror.fromTextArea(document.getElementById('output'), {
+  const codeMirrorOutput = CodeMirror(document.getElementById('output'), {
     lineNumbers: true,
     mode: 'javascript',
     readOnly: true,
@@ -33,4 +34,5 @@ const domReady = () => new Promise(resolve => {
       codeMirrorOutput.setValue(minifiedOutput.code)
     }
   })
+  codeMirrorOutput.setValue((await minifier.minify(codeMirrorInput.getValue())).code)
 })()
