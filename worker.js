@@ -6,5 +6,4 @@ class Minifier {
     return Terser.minify(code);
   }
 }
-
 Comlink.expose(Minifier)

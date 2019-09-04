@@ -8,7 +8,6 @@ const domReady = () => new Promise(resolve => {
   document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', resolve) : resolve()
 })
 
-
 ;(async () => {
   let minifier
   await Promise.all([
