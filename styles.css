@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.content {
+  max-width: 1700px;
+  margin: auto;
+  padding: 1em;
+}
+
+.CodeMirror {
+  max-width: 818px;
+}
+
+.editors {
+  display: flex;
+  min-height: 400px;
+}
+.editor {
+  height: auto;
+  flex-basis: 50%;
+}
+.editor:first-of-type {
+  padding-right: 1em;
+}
+.editor:last-of-type {
+  padding-left: 1em;
+}
+
+#error {
+  border-left: 0.5em solid #c00;
+  padding: 0.5em 0.5em 0.5em 1em;
+  background: #f5f5f5;
+  display: none;
+}
+#error.show {
+  display: inherit;
+}
+#error mark {
+  background: #f8ca75;
+}

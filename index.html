@@ -10,27 +10,27 @@
   <link rel="stylesheet" href="https://unpkg.com/codemirror@5.48.4/lib/codemirror.css">
   <script type="module" src="https://unpkg.com/comlink@4.0.2/dist/esm/comlink.mjs"></script>
   <script type="module" src="index.js"></script>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>YAJOM</h1>
-  <p>Minify JavaScript as you type!</p>
-  <main class="editors">
-    <div class="editor" id="input">
-      <h2>Input</h2>
-    </div>
-    <div class="editor" id="output">
-        <h2>Output</h2>
-    </div>
-  </main>
+  <div class="content">
+    <h1>YAJOM</h1>
+    <p>Minify JavaScript as you type!</p>
+    <main>
+      <section class="editors">
+        <div class="editor" id="input">
+          <h2>Input</h2>
+        </div>
+        <div class="editor" id="output">
+            <h2>Output</h2>
+            <div id="error">
+              <h3 class="message">Unexpected token: punc (.)</h3>
+              <p class="location">Line 2, column 24</p>
+              <pre class="code">return first + second;<mark>.</mark></pre>
+            </div>
+        </div>
+      </section>
+    </main>
+  </div>
 </body>
-<style>
-  .editors {
-    display: flex;
-    min-height: 400px;
-  }
-  .editor {
-    height: auto;
-    flex-basis: 50%;
-  }
-</style>
 </html>
