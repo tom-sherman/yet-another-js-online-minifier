@@ -11,6 +11,18 @@ body {
   padding: 1em;
 }
 
+blockquote {
+  border-left: 0.5em solid #f5f5f5;
+  margin: 0;
+  padding: 1em 1.5em 1em 1em;
+}
+
+footer {
+  font-size: 14px;
+  opacity: .7;
+  text-align: center;
+}
+
 .CodeMirror {
   max-width: 818px;
 }
@@ -41,4 +53,13 @@ body {
 }
 #error mark {
   background: #f8ca75;
+}
+
+@media (max-width: 500px) {
+  .editors {
+    display: block;
+  }
+  .editor {
+    padding: 0 !important;
+  }
 }
