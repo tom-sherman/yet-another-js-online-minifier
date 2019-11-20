@@ -1,8 +1,9 @@
-import * as Comlink from 'https://unpkg.com/comlink@4.0.2/dist/esm/comlink.mjs'
-
-const Minifier = Comlink.wrap(
-  new Worker('worker.js', { type: "module" })
-)
+import 'https://unpkg.com/terser@4.0.0/dist/bundle.js'
+class Minifier {
+  minify(code) {
+    return Terser.minify(code);
+  }
+}
 
 const domReady = () => new Promise(resolve => {
   document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', resolve) : resolve()
@@ -41,11 +42,8 @@ const getLinePosition = (code, position) => {
 }
 
 ;(async () => {
-  let minifier
-  await Promise.all([
-    domReady(),
-    (new Minifier()).then(inst => { minifier = inst })
-  ])
+  let minifier = new Minifier()
+  await domReady()
   const codeMirrorInput = CodeMirror(document.getElementById('input'), {
     lineNumbers: true,
     mode: 'javascript',
