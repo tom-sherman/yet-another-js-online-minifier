@@ -1,4 +1,4 @@
-import 'https://unpkg.com/terser@4.0.0/dist/bundle.js'
+import 'https://unpkg.com/terser@4.4.0/dist/bundle.min.js'
 class Minifier {
   minify(code) {
     return Terser.minify(code);
@@ -57,6 +57,7 @@ const getLinePosition = (code, position) => {
   })
   codeMirrorInput.on('change', async editor => {
     const input = editor.getValue()
+    console.log(input)
     const minifiedOutput = await minifier.minify(input)
     if (minifiedOutput.error) {
       console.error(minifiedOutput.error)
