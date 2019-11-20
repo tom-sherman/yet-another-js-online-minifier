@@ -49,7 +49,7 @@ const getLinePosition = (code, position) => {
   const codeMirrorInput = CodeMirror(document.getElementById('input'), {
     lineNumbers: true,
     mode: 'javascript',
-    value: 'function add(first, second) {\n\t return first + second;\n }'
+    value: 'const add = (first, second) => {\n\t return first + second;\n }'
   })
   const codeMirrorOutput = CodeMirror(document.getElementById('output'), {
     lineNumbers: true,
