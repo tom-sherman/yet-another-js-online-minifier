@@ -18,25 +18,37 @@ const showError = (input, error) => {
   elLocation.textContent = `Ln ${error.line}, Col ${error.col}`
   const { start, end } = getLinePosition(input, error.pos)
 
-  elCode.innerHTML = `${
-    error.pos > 0 ? input.slice(start, error.pos) : ''
-  }<mark>${input[error.pos]}</mark>${input.slice(error.pos + 1, end)}`.trim()
+  const codeBeforeErrorPosition =
+    error.pos > 0 && error.pos ? input.slice(start, error.pos) : ''
+  const characterAtErrorPosition =
+    typeof input[error.pos] === 'undefined' ? ' ' : input[error.pos]
+  const codeAfterErrorPosition = input.slice(error.pos + 1, end)
+
+  elCode.innerHTML = `${codeBeforeErrorPosition}<mark>${characterAtErrorPosition}</mark>${codeAfterErrorPosition}`.trim()
+
   elError.classList.add('show')
 }
 
 const getLinePosition = (code, position) => {
   let currentPos = position
-  let currentChar = code[currentPos]
-  while (currentChar !== '\n' || currentPos === 0) {
+
+  // Look behind to find the start of the line
+  while (currentPos > 0) {
     currentPos -= 1
-    currentChar = code[currentPos]
+    if (code[currentPos] === '\n') {
+      break
+    }
   }
+
   const start = currentPos
   currentPos = position
-  currentChar = code[currentPos]
-  while (currentChar !== '\n' && currentPos !== code.length) {
+
+  // Look ahead to find the end of the line
+  while (currentPos < code.length) {
     currentPos += 1
-    currentChar = code[currentPos]
+    if (code[currentPos] === '\n') {
+      break
+    }
   }
   const end = currentPos
 
