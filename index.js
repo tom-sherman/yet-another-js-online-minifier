@@ -1,12 +1,13 @@
 import * as Comlink from 'https://unpkg.com/comlink@4.0.2/dist/esm/comlink.mjs'
 
-const TerserWorker = Comlink.wrap(
-  new Worker('worker.js', { type: "module" })
-)
+const TerserWorker = Comlink.wrap(new Worker('worker.js', { type: 'module' }))
 
-const domReady = () => new Promise(resolve => {
-  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', resolve) : resolve()
-})
+const domReady = () =>
+  new Promise(resolve => {
+    document.readyState === 'loading'
+      ? document.addEventListener('DOMContentLoaded', resolve)
+      : resolve()
+  })
 
 const showError = (input, error) => {
   const elError = document.getElementById('error')
@@ -17,7 +18,9 @@ const showError = (input, error) => {
   elLocation.textContent = `Ln ${error.line}, Col ${error.col}`
   const { start, end } = getLinePosition(input, error.pos)
 
-  elCode.innerHTML = `${error.pos > 0 ? input.slice(start, error.pos) : ''}<mark>${input[error.pos]}</mark>${input.slice(error.pos + 1, end)}`.trim()
+  elCode.innerHTML = `${
+    error.pos > 0 ? input.slice(start, error.pos) : ''
+  }<mark>${input[error.pos]}</mark>${input.slice(error.pos + 1, end)}`.trim()
   elError.classList.add('show')
 }
 
@@ -71,5 +74,7 @@ const getLinePosition = (code, position) => {
     }
   })
 
-  codeMirrorOutput.setValue((await TerserWorker.minify(codeMirrorInput.getValue())).code)
+  codeMirrorOutput.setValue(
+    (await TerserWorker.minify(codeMirrorInput.getValue())).code
+  )
 })()
