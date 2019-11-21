@@ -1,6 +1,6 @@
 import * as Comlink from 'https://unpkg.com/comlink@4.0.2/dist/esm/comlink.mjs'
 
-const Minifier = Comlink.wrap(
+const TerserWorker = Comlink.wrap(
   new Worker('worker.js', { type: "module" })
 )
 
@@ -41,25 +41,24 @@ const getLinePosition = (code, position) => {
 }
 
 ;(async () => {
-  let minifier
-  await Promise.all([
-    domReady(),
-    (new Minifier()).then(inst => { minifier = inst })
-  ])
+  await domReady()
+
   const codeMirrorInput = CodeMirror(document.getElementById('input'), {
     lineNumbers: true,
     mode: 'javascript',
     value: 'const add = (first, second) => {\n\t return first + second;\n }'
   })
+
   const codeMirrorOutput = CodeMirror(document.getElementById('output'), {
     lineNumbers: true,
     mode: 'javascript',
     readOnly: true,
     lineWrapping: true
   })
+
   codeMirrorInput.on('change', async editor => {
     const input = editor.getValue()
-    const minifiedOutput = await minifier.minify(input)
+    const minifiedOutput = await TerserWorker.minify(input)
     if (minifiedOutput.error) {
       console.error(minifiedOutput.error)
       codeMirrorOutput.setValue(JSON.stringify(minifiedOutput.error))
@@ -71,5 +70,6 @@ const getLinePosition = (code, position) => {
       codeMirrorOutput.setValue(minifiedOutput.code)
     }
   })
-  codeMirrorOutput.setValue((await minifier.minify(codeMirrorInput.getValue())).code)
+
+  codeMirrorOutput.setValue((await TerserWorker.minify(codeMirrorInput.getValue())).code)
 })()
