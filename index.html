@@ -5,12 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>YAJOM - Yet Another Online Javascript Minifier</title>
-
-  <link rel="preload" href="https://unpkg.com/terser@4.0.0/dist/bundle.js" as="script">
-  <link rel="preload" href="https://unpkg.com/comlink@4.0.2/dist/esm/comlink.mjs" as="script">
-  <link rel="preload" href="worker.js" as="script">
-
+  <script src="https://unpkg.com/codemirror@5.48.4/lib/codemirror.js"></script>
+  <script src="https://unpkg.com/codemirror@5.48.4/mode/javascript/javascript.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/codemirror@5.48.4/lib/codemirror.css">
+  <script type="module" src="https://unpkg.com/comlink@4.0.2/dist/esm/comlink.mjs"></script>
+  <script type="module" src="index.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -55,10 +54,5 @@
       <p><a href="https://github.com/tom-sherman/yet-another-js-online-minifier">View the code on GitHub.</a></p>
     </footer>
   </div>
-
-  <script src="https://unpkg.com/codemirror@5.48.4/lib/codemirror.js"></script>
-  <script src="https://unpkg.com/codemirror@5.48.4/mode/javascript/javascript.js"></script>
-  <script type="module" src="https://unpkg.com/comlink@4.0.2/dist/esm/comlink.mjs"></script>
-  <script type="module" src="index.js"></script>
 </body>
 </html>
